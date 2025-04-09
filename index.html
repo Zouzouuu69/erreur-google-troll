@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Erreur Google Critique</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    .warning {
+      font-size: 2em;
+      color: red;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .progress-bar {
+      width: 80%;
+      margin: 30px auto;
+      background-color: #444;
+      height: 30px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background-color: red;
+      width: 0;
+      transition: width 0.1s;
+    }
+  </style>
+</head>
+<body>
+  <div class="warning">⚠️ Erreur critique détectée sur votre compte Google ⚠️</div>
+  <p>Fermeture automatique de votre session dans :</p>
+  <h1 id="timer">5</h1>
+
+  <div class="progress-bar">
+    <div class="progress-fill" id="bar"></div>
+  </div>
+
+  <script>
+    let count = 5;
+    const timer = document.getElementById("timer");
+    const bar = document.getElementById("bar");
+
+    const interval = setInterval(() => {
+      count--;
+      timer.textContent = count;
+      bar.style.width = `${(5 - count) * 20}%`;
+
+      if (count <= 0) {
+        clearInterval(interval);
+        document.body.innerHTML = `
+          <h1 style="font-size: 3em; color: lime;">😂 Juste une blague !</h1>
+          <p style="font-size: 1.5em;">Ton pote Nounou t’a eu !</p>
+          <img src="https://media.giphy.com/media/l3q2K5jinAlChoCLS/giphy.gif" />
+        `;
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
